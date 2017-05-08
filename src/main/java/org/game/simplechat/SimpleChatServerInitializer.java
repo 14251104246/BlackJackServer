@@ -27,6 +27,6 @@ public class SimpleChatServerInitializer extends
         pipeline.addLast("encoder", new StringEncoder());
         pipeline.addLast("handler", new SimpleChatServerHandler());
  
-		System.out.println("SimpleChatClient:"+ch.remoteAddress() +"连接上");
+		System.out.println("Client:"+ch.remoteAddress() +"连接上");
     }
 }

@@ -1,4 +1,4 @@
-package org.game.simplechat;
+package org.game.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -13,11 +13,11 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @author waylau.com
  * @date 2015-2-16
  */
-public class SimpleChatServer {
+public class Server {
 
     private int port;
 
-    public SimpleChatServer(int port) {
+    public Server(int port) {
         this.port = port;
     }
 
@@ -29,7 +29,7 @@ public class SimpleChatServer {
             ServerBootstrap b = new ServerBootstrap(); // (2)
             b.group(bossGroup, workerGroup)
              .channel(NioServerSocketChannel.class) // (3)
-             .childHandler(new SimpleChatServerInitializer())  //(4)
+             .childHandler(new ServerHandlerInitializer())  //(4)
              .option(ChannelOption.SO_BACKLOG, 128)          // (5)
              .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
             
@@ -57,7 +57,7 @@ public class SimpleChatServer {
         } else {
             port = 8080;
         }
-        new SimpleChatServer(port).run();
+        new Server(port).run();
 
     }
 }
