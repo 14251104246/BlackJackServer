@@ -6,7 +6,11 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
+
 import org.game.controller.DataController;
+import org.game.controller.ReceiveDataController;
+import org.game.controller.SendDataController;
+import org.game.dto.GameData;
 
 /**
  * 说明：处理器
@@ -28,23 +32,14 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, Object obj)
 			throws Exception {
-		dataController = new DataController(obj).parseData().doAction();
-		ctx.writeAndFlush(dataController.returnData());
-		/*String jsonString = "";
+//		dataController = new DataController(obj).parseData().doAction();
+//		ctx.writeAndFlush(dataController.returnData());
+//		System.out.println(((GameData)obj).getResult());
+		//分发数据，data的datatype为空则表示所有观察者都接收这个数据
+		ReceiveDataController.getReceiveDataContoller().distributeData(obj,new SendDataController(ctx));
 
-		if (obj instanceof GameData) {
-			GameData user = (GameData)obj;
-			
-			ctx.writeAndFlush(user);
+	//	ctx.writeAndFlush(obj);
 
-			jsonString = JacksonMapper.getInstance().writeValueAsString(user); // 对象转为json字符串
-
-		} else {
-			ctx.writeAndFlush(obj);
-			jsonString = JacksonMapper.getInstance().writeValueAsString(obj); // 对象转为json字符串
-		}
-		
-		System.out.println("Server get msg form Client -" + jsonString);*/
 	}
 	
     @Override

@@ -42,7 +42,7 @@ public class Client {
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
             while(true){
                 //System.out.println(in.readLine());
-                GameData jacksonBean = new GameData(1, in.readLine());
+                GameData jacksonBean = new GameData("msg", in.readLine());
                 channel.writeAndFlush(jacksonBean);
                 //channel.writeAndFlush(in.readLine() + "\r\n");
             }

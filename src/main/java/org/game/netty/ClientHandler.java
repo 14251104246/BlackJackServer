@@ -26,6 +26,7 @@ public class ClientHandler extends
 			jsonString = JacksonMapper.getInstance().writeValueAsString(obj); // 对象转为json字符串
 		}
 		System.out.println("Client get msg form Server -" + jsonString);*/
+		System.out.println(obj);
 	}
 
 }

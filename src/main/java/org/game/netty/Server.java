@@ -1,4 +1,10 @@
+/**
+ * 
+ */
 package org.game.netty;
+import org.game.controller.SendDataController;
+import org.game.controller.TestCallBack;
+import org.game.netty.ServerHandlerInitializer;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -14,7 +20,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @date 2015-2-16
  */
 public class Server {
-
+	private static ChannelFuture f;
     private int port;
 
     public Server(int port) {
@@ -36,8 +42,11 @@ public class Server {
     		System.out.println("Server 启动了");
     		
             // 绑定端口，开始接收进来的连接
-            ChannelFuture f = b.bind(port).sync(); // (7)
-
+            f = b.bind(port).sync(); // (7)
+            
+            
+            
+            
             // 等待服务器  socket 关闭 。
             // 在这个例子中，这不会发生，但你可以优雅地关闭你的服务器。
             f.channel().closeFuture().sync();
@@ -51,6 +60,9 @@ public class Server {
     }
 
     public static void main(String[] args) throws Exception {
+    	
+    	testInit();
+    	
         int port;
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
@@ -59,5 +71,16 @@ public class Server {
         }
         new Server(port).run();
 
+        
+        
     }
+
+	/**
+	 * 
+	 */
+    static TestCallBack t ;
+	private static void testInit() {
+		t=new TestCallBack();
+
+	}
 }
