@@ -44,6 +44,7 @@ public class Client {
                 //System.out.println(in.readLine());
                 GameData jacksonBean = new GameData(1, in.readLine());
                 channel.writeAndFlush(jacksonBean);
+                
                 //channel.writeAndFlush(in.readLine() + "\r\n");
             }
         } catch (Exception e) {

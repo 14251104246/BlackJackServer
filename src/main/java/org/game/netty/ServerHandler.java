@@ -7,6 +7,7 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import org.game.controller.DataController;
+import org.game.dto.GameData;
 
 /**
  * 说明：处理器
@@ -28,9 +29,10 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, Object obj)
 			throws Exception {
-		dataController = new DataController(obj).parseData().doAction();
-		ctx.writeAndFlush(dataController.returnData());
-		/*String jsonString = "";
+		//dataController = new DataController(obj).parseData().doAction();
+		//ctx.writeAndFlush(dataController.returnData());
+		System.out.println(obj);
+		String jsonString = "";
 
 		if (obj instanceof GameData) {
 			GameData user = (GameData)obj;
@@ -44,7 +46,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
 			jsonString = JacksonMapper.getInstance().writeValueAsString(obj); // 对象转为json字符串
 		}
 		
-		System.out.println("Server get msg form Client -" + jsonString);*/
+		System.out.println("Server get msg form Client -" + jsonString);
 	}
 	
     @Override

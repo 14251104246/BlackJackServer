@@ -21,7 +21,6 @@ public class DataController {
     }
 
     public DataController parseData() {
-
         return this;
     }
 
@@ -40,7 +39,6 @@ public class DataController {
     }
 
     public GameData returnData() {
-
         return null;
     }
 }

@@ -17,8 +17,8 @@ public class ServerHandlerInitializer extends
 	@Override
 	protected void initChannel(Channel ch) throws Exception {
 		ChannelPipeline pipeline = ch.pipeline();
-		pipeline.addLast(new JacksonDecoder<GameData>(GameData.class));
-		pipeline.addLast(new JacksonEncoder());
+//		pipeline.addLast(new JacksonDecoder<GameData>(GameData.class));
+//		pipeline.addLast(new JacksonEncoder());
 		pipeline.addLast(new ServerHandler());
 	}
 }

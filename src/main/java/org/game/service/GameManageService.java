@@ -1,7 +1,11 @@
 package org.game.service;
 
+import org.game.dto.GameData;
 import org.game.entity.Card;
+import org.game.entity.Gamer;
 import org.game.entity.Hand;
+
+import java.util.List;
 
 public interface GameManageService {
 
@@ -14,8 +18,9 @@ public interface GameManageService {
     /**玩家调用的方法
      * 加入游戏
      * @param userId 玩家id
+     * @return 加入游戏是否成功
      */
-    void joinGame(String userId);
+     GameData joinGame(String userId);
 
     /**
      * 庄家调用
@@ -43,7 +48,7 @@ public interface GameManageService {
      * 结束一轮游戏并返回没人手里的牌
      *
      */
-    Hand[] endRound();
+    List<Gamer> endRound();
 
     void endGame();
 
