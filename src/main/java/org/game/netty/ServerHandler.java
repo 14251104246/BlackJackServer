@@ -7,6 +7,8 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import org.game.controller.DataController;
+import org.game.controller.ReceiveDataController;
+import org.game.controller.SendDataController;
 import org.game.dto.GameData;
 
 /**
@@ -31,6 +33,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
 			throws Exception {
 		//dataController = new DataController(obj).parseData().doAction();
 		//ctx.writeAndFlush(dataController.returnData());
+		/*
 		System.out.println(obj);
 		String jsonString = "";
 
@@ -47,6 +50,11 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
 		}
 		
 		System.out.println("Server get msg form Client -" + jsonString);
+
+		*/
+
+		//分发数据，data的datatype为空则表示所有观察者都接收这个数据
+		ReceiveDataController.getReceiveDataContoller().distributeData(obj,new SendDataController(ctx));
 	}
 	
     @Override

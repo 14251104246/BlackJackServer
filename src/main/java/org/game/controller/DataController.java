@@ -16,7 +16,7 @@ public class DataController {
         if(data instanceof GameData)
             this.data = (GameData) data;
         else{
-            data = new GameData(-1, "erro");
+            data = new GameData("msg", "erro");
         }
     }
 
@@ -26,7 +26,7 @@ public class DataController {
 
     public DataController doAction() {
         switch (data.getType()){
-            case -1:break;
+            case "msg":break;
             /*case 0 : gameService.createGame();break;
             case 1 : gameService.joinGame();break;
             case 2 : gameService.startGame();break;

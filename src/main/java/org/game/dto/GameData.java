@@ -3,28 +3,28 @@ package org.game.dto;
 import java.io.Serializable;
 
 public class GameData{
-	
-	private int type;
-	
-	private String result;
-	
+
+	private String type;
+
+	private Object result;
+
 	public GameData(){}
 
-	public GameData(int type, String result) {
+	public GameData(String type, Object result) {
 		super();
 		this.type = type;
 		this.result = result;
 	}
 
-	public int getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
-	public String getResult() {
+	public Object getResult() {
 		return result;
 	}
 

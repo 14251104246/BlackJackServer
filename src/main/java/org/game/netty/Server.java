@@ -6,6 +6,7 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import org.game.controller.TestCallBack;
 
 /**
  * 简单聊天服务器-服务端
@@ -51,6 +52,9 @@ public class Server {
     }
 
     public static void main(String[] args) throws Exception {
+
+        testInit();
+
         int port;
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
@@ -58,6 +62,13 @@ public class Server {
             port = 8080;
         }
         new Server(port).run();
+
+    }
+
+
+    static TestCallBack t ;
+    private static void testInit() {
+        t=new TestCallBack();
 
     }
 }
