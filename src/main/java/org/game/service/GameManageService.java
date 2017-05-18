@@ -13,42 +13,39 @@ public interface GameManageService {
      * 创建游戏
      * @param dealerId 庄家id
      */
-    void createGame(String dealerId);
+    boolean createGame(String dealerId);
 
     /**玩家调用的方法
      * 加入游戏
      * @param userId 玩家id
-     * @return 加入游戏是否成功
      */
-     GameData joinGame(String userId);
+    boolean joinGame(String userId);
 
-    /**
-     * 庄家调用
+    /**轮询
+     * 庄家玩家同时都调用
      * 开始游戏
      */
     void startGame();
 
-    /**
-     * 庄玩家调用
-     * 要牌：按照顺序从第一个player到最终dealer
+    /**轮询
+     * 要牌
      * @param playerId
      * @return
      */
     Card getCard(String playerId);
 
     /**
-     * 庄玩家调用
      * 不要牌
      * @param playerId
      */
     void rejectCard(String playerId);
 
     /**
-     *
-     * 结束一轮游戏并返回没人手里的牌
-     *
+     * 轮询
+     * 不要牌的庄玩家调用
+     * 获得结果
      */
-    List<Gamer> endRound();
+    List<Hand> getResult();
 
     void endGame();
 

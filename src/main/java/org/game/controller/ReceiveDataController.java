@@ -29,10 +29,10 @@ public class ReceiveDataController extends Subject{
 
 
         for (int i = arrLocal.length-1; i>=0; i--){
-        	String rDatatype = ((GameData)data).getType();
+        	/*String rDatatype = ((GameData)data).getType();
         	DataListener Listener = (DataListener)arrLocal[i];
         	if(rDatatype.equals(Listener.getDataType())||Listener.getDataType()==null||rDatatype==null)
-        		Listener.whenReceiveData(sendDataController, data);
+        		Listener.whenReceiveData(sendDataController, data);*/
         }
             
     }	

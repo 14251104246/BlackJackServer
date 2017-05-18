@@ -1,6 +1,9 @@
 package org.game.service;
 
 import org.game.entity.Card;
+import org.game.entity.Hand;
+
+import java.util.List;
 
 /**
  * Created by yp on 2017/5/5.
@@ -43,7 +46,7 @@ public interface GameService {
      * 不要牌的庄玩家调用
      * 获得结果
      */
-    void getResult();
+    List<Hand> getResult();
 
     void endGame();
 

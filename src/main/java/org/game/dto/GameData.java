@@ -1,43 +1,66 @@
 package org.game.dto;
 
+import org.game.enums.Action;
+
 import java.io.Serializable;
 
-public class GameData{
+public class GameData implements Serializable{
 
-	private String type;
+	//private String type;
 
-	private Object result;
+	private Action action;
+
+	private Object body;
+
+	private String userId;
 
 	public GameData(){}
 
-	public GameData(String type, Object result) {
-		super();
-		this.type = type;
-		this.result = result;
+	public GameData(Action action) {
+		this.action = action;
 	}
 
-	public String getType() {
-		return type;
+	public GameData(Action action, Object body) {
+		this.action = action;
+		this.body = body;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public GameData(Action action, Object body, String userId) {
+		this.action = action;
+		this.body = body;
+		this.userId = userId;
 	}
 
-	public Object getResult() {
-		return result;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setResult(String result) {
-		this.result = result;
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public Action getAction() {
+		return action;
+	}
+
+	public void setAction(Action action) {
+		this.action = action;
+	}
+
+	public Object getBody() {
+		return body;
+	}
+
+	public void setBody(Object body) {
+		this.body = body;
 	}
 
 	@Override
 	public String toString() {
 		return "GameData{" +
-				"type=" + type +
-				", result='" + result + '\'' +
+				"action=" + action +
+				", body=" + body +
+				", userId='" + userId + '\'' +
 				'}';
 	}
-
 }

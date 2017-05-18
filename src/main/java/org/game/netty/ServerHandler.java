@@ -16,7 +16,7 @@ import org.game.dto.GameData;
  *
  * @author <a href="http://www.waylau.com">waylau.com</a> 2015年11月7日 
  */
-public class ServerHandler extends SimpleChannelInboundHandler<Object> {
+public class ServerHandler extends SimpleChannelInboundHandler<Object> implements DataController.GameControllerFinish{
 
 	ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
@@ -29,9 +29,12 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
 	}
 
 	@Override
-	protected void channelRead0(ChannelHandlerContext ctx, Object obj)
+	protected synchronized void channelRead0(ChannelHandlerContext ctx, Object obj)
 			throws Exception {
-		//dataController = new DataController(obj).parseData().doAction();
+		System.out.println("···········");
+		System.out.println(obj);
+		dataController = new DataController(this, ctx, obj);
+		dataController.doAction();
 		//ctx.writeAndFlush(dataController.returnData());
 		/*
 		System.out.println(obj);
@@ -54,7 +57,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
 		*/
 
 		//分发数据，data的datatype为空则表示所有观察者都接收这个数据
-		ReceiveDataController.getReceiveDataContoller().distributeData(obj,new SendDataController(ctx));
+		//ReceiveDataController.getReceiveDataContoller().distributeData(obj,new SendDataController(ctx));
 	}
 	
     @Override
@@ -65,4 +68,9 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
         cause.printStackTrace();
         ctx.close();
     }
+
+	@Override
+	public void finish(GameData gameData, ChannelHandlerContext context) {
+		context.writeAndFlush(gameData);
+	}
 }

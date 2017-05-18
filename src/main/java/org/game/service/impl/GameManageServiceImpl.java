@@ -16,8 +16,9 @@ public class GameManageServiceImpl implements GameManageService {
 	
 	private Round round;
 
-	public void createGame(String dealerId) {
+	public boolean createGame(String dealerId) {
 		round = new Round(new Dealer(new User(dealerId), new Hand()));
+		return true;
 	}
 
 	/**
@@ -25,12 +26,12 @@ public class GameManageServiceImpl implements GameManageService {
 	 * @param userId 玩家id
 	 * @return
 	 */
-	public GameData joinGame(String userId) {
+	public boolean joinGame(String userId) {
 		if(round != null ){
-			round.addGamer(new Player(new User(userId), new Hand()));
-			return null;
+			round.addGamer(new Player(new User(userId), new Hand(userId)));
+			return true;
 		}
-		return null;
+		return false;
 	}
 
 	/**
@@ -62,12 +63,15 @@ public class GameManageServiceImpl implements GameManageService {
 		//找到对应的gamer后，把card加到ta的hand中
 		round.getGamer(playerId).getHand().getCards().add(card);
 		//ToDo 等服务器接收到对方接收到牌的回应，再计算hand的num
-
 		return card;
 	}
 
 	public void rejectCard(String playerId) {
+	}
 
+	@Override
+	public List<Hand> getResult() {
+		return null;
 	}
 
 	public List<Gamer> endRound() {

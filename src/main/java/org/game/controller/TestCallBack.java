@@ -30,7 +30,7 @@ public class TestCallBack implements DataListener{
 		
 		
 		sendContoller.sendData((GameData)data);
-		sendContoller.sendData(new GameData("sendmsg","send"));
+		//sendContoller.sendData(new GameData("sendmsg","send"));
 		
 	}
 

@@ -4,10 +4,15 @@ package org.game.enums;
  * Created by yp on 2017/5/8.
  */
 public enum CardEnum {
-    DIAMOND(1,"方块"),
+    /*DIAMOND(1,"方块"),
     CLUB(2,"梅花"),
     HEART(3, "红心"),
-    SPADE(4, "黑桃");
+    SPADE(4, "黑桃");*/
+    //"♥", "♠", "♣", "♦"
+    DIAMOND(1,"♦"),
+    CLUB(2,"♣"),
+    HEART(3, "♥"),
+    SPADE(4, "♠");
     int num;
     String sysmbol;
 
